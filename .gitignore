@@ -1,0 +1,16 @@
+.idea/
+*.iml
+*.eml
+*.o
+*.lo
+*.txt
+*.data
+*.pyc
+*swp
+*.tar.gz
+*.DS_Store
+*.pyc
+*.data
+target/
+.sass-cache/
+.git/
