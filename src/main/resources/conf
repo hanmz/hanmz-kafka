@@ -1,0 +1,11 @@
+mainClass = com.hanmz.kafka.test.Consumer
+# 集群地址
+bootstrapServers = 127.0.0.1:9092
+# 主题
+topic = xxx
+# 分区
+partition = 0
+# 是否从头开始消费
+seekToBeginning = true
+# 如果开启sasl，这里配置sasl.jaas.config内容
+saslJaasConfig =

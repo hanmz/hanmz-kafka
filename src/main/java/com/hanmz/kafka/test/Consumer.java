@@ -66,7 +66,7 @@ public class Consumer {
 
         new Thread(() -> {
             while (!Thread.interrupted()) {
-                log.info("平均速率/s: {}", DataUtil.format(meter.meanRate()));
+                log.info("平均消费速率/s: {}", DataUtil.format(meter.meanRate()));
                 log.info("最近1min消费速率: {}", DataUtil.format(meter.oneMinuteRate()));
                 log.info("最近5min消费速率: {}", DataUtil.format(meter.fiveMinuteRate()));
                 log.info("最近15min消费速率: {}", DataUtil.format(meter.fifteenMinuteRate()));
