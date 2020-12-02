@@ -30,7 +30,7 @@ public class Consumer {
 
     public static void run() {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, AppConfig.getBootstrapServers());
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, AppConfig.bootstrapServers());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "KAFKA-GROUP");
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         // 重置offset到日志的开始位置
@@ -54,7 +54,7 @@ public class Consumer {
 
         // 指定分区消费
         List<TopicPartition> topicPartitions = Lists.newLinkedList();
-        topicPartitions.add(new TopicPartition(AppConfig.getTopic(), AppConfig.getPartition()));
+        topicPartitions.add(new TopicPartition(AppConfig.topic(), AppConfig.getPartition()));
         consumer.assign(Lists.newArrayList(topicPartitions));
 
         // 设置开始消费的位置

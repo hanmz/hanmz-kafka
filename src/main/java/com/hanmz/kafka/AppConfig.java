@@ -19,20 +19,17 @@ public class AppConfig {
 
     static {
         try {
-            com.hanmz.kafka.AppConfig.init();
+            if (HostUtils.isMacOSX()) {
+                // 本地配置加载路径，注意，这里要指定编码方式，否者中文会出现乱码
+                conf.load(new InputStreamReader(Objects.requireNonNull(AppConfig.class.getClassLoader().getResourceAsStream("conf")), CHARSET));
+                System.out.println(conf.toString());
+            } else {
+                // linux服务器上配置加载路径（同一目录下）
+                conf.load(new InputStreamReader(new FileInputStream(new File("./conf")), CHARSET));
+            }
         } catch (Exception e) {
-            System.out.println("加载配置文件失败");
-        }
-    }
-
-    private static void init() throws Exception {
-        if (HostUtils.isMacOSX()) {
-            // 本地配置加载路径，注意，这里要指定编码方式，否者中文会出现乱码
-            conf.load(new InputStreamReader(Objects.requireNonNull(AppConfig.class.getClassLoader().getResourceAsStream("conf")), CHARSET));
-            System.out.println(conf.toString());
-        } else {
-            // linux服务器上配置加载路径（同一目录下）
-            conf.load(new InputStreamReader(new FileInputStream(new File("./conf")), CHARSET));
+            System.out.println("加载配置文件失败，进程退出");
+            System.exit(-1);
         }
     }
 
@@ -40,19 +37,11 @@ public class AppConfig {
         return conf.getProperty("mainClass");
     }
 
-    public static String method() {
-        return conf.getProperty("method");
-    }
-
-    public static String getTopic() {
+    public static String topic() {
         return conf.getProperty("topic");
     }
 
-    public static String getGroup() {
-        return conf.getProperty("group");
-    }
-
-    public static String getBootstrapServers() {
+    public static String bootstrapServers() {
         return conf.getProperty("bootstrapServers", "").trim();
     }
 

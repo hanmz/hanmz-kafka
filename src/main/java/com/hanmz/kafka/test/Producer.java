@@ -31,7 +31,7 @@ public class Producer {
 
     private static void send() {
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, AppConfig.getBootstrapServers());
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, AppConfig.bootstrapServers());
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.ACKS_CONFIG, AppConfig.ack());
@@ -64,7 +64,7 @@ public class Producer {
 
         while (!Thread.interrupted()) {
             // TODO: hanmz 2020/12/1 异步发送
-            producer.send(new ProducerRecord<>(AppConfig.getTopic(), msg),
+            producer.send(new ProducerRecord<>(AppConfig.topic(), msg),
                     (metadata, exception) -> {
                         meter.mark();
 //                        log.info("发送成功, 分区：{}, offset: {}", metadata.partition(), metadata.offset());
