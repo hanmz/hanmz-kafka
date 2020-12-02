@@ -25,7 +25,7 @@ public class Producer {
     // https://metrics.dropwizard.io/2.2.0/getting-started/ [yammer文档]
     private static final Meter meter = Metrics.newMeter(Consumer.class, "produce", "produce", TimeUnit.SECONDS);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         send();
     }
 
