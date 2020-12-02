@@ -7,6 +7,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -27,7 +28,7 @@ public class AppConfig {
     private static void init() throws Exception {
         if (HostUtils.isMacOSX()) {
             // 本地配置加载路径，注意，这里要指定编码方式，否者中文会出现乱码
-            conf.load(new InputStreamReader(com.hanmz.kafka.AppConfig.class.getClassLoader().getResourceAsStream("conf"), CHARSET));
+            conf.load(new InputStreamReader(Objects.requireNonNull(AppConfig.class.getClassLoader().getResourceAsStream("conf")), CHARSET));
             System.out.println(conf.toString());
         } else {
             // linux服务器上配置加载路径（同一目录下）
