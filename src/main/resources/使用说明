@@ -1,0 +1,11 @@
+前提：确保机器上已经安装有java
+
+Jar包功能：
+1、提供指定主题分区消费能力，用来测试单消费者实例拉取单分区消息的速度
+2、提供生产消息功能，用来测试生产者实例生产性能
+
+生产消费使用使用流程：
+1、修改conf配置文件，填写正确的bootstrapServers、topic、partition信息。如果开启了acl鉴权，需要配置saslJaasConfig
+2、修改conf配置文件，如果测试执行分区消费，设置mainClass = com.hanmz.kafka.test.Consumer，如果测试生产消息设置 mainClass = com.hanmz.kafka.test.Producer
+3、执行 java -jar kafka-tool.jar 即可执行
+
