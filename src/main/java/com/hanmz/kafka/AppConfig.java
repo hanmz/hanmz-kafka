@@ -45,8 +45,12 @@ public class AppConfig {
         return conf.getProperty("bootstrapServers", "").trim();
     }
 
-    public static int getPartition() {
+    public static int partition() {
         return NumberUtils.toInt(conf.getProperty("partition", "1").trim());
+    }
+
+    public static int offset() {
+        return NumberUtils.toInt(conf.getProperty("offset", "1").trim());
     }
 
     public static boolean isSeekToBeginning() {
@@ -71,5 +75,13 @@ public class AppConfig {
 
     public static int printInterval() {
         return NumberUtils.toInt(conf.getProperty("printInterval", "2").trim());
+    }
+
+    public static String method() {
+        return conf.getProperty("method", "").trim();
+    }
+
+    public static int singlePartitionRecordNumber() {
+        return NumberUtils.toInt(conf.getProperty("singlePartitionRecordNumber", "10").trim());
     }
 }

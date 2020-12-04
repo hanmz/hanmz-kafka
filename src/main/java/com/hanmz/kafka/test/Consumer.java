@@ -54,7 +54,7 @@ public class Consumer {
 
         // 指定分区消费
         List<TopicPartition> topicPartitions = Lists.newLinkedList();
-        topicPartitions.add(new TopicPartition(AppConfig.topic(), AppConfig.getPartition()));
+        topicPartitions.add(new TopicPartition(AppConfig.topic(), AppConfig.partition()));
         consumer.assign(Lists.newArrayList(topicPartitions));
 
         // 设置开始消费的位置
